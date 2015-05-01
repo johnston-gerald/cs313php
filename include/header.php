@@ -17,18 +17,17 @@
     <nav>
         <ul id="top_menu">
             <li><a href='index.php'>home</a></li>
-            <li><a href='index.php?action=assignments/assignments.php'>assignments</a>
+            <li><a href='#'>assignments</a>
                 <ul>
-<!--                    <li><a href='#'>Web development</a>
-                        <ul>
-                            <li><a href='index.php?action=tutorials/web_development/html_structures.php'>HTML structures</a></li>
+                    <li><a href='index.php?action=assignments/spiritual_thought1.php'>Spiritual Thought 1</a></li>
+<!--                        <ul>
                             <li><a href='index.php?action=tutorials/web_development/ieshiv.php'>Internet Explorer shiv</a></li>
                             <li><a href='index.php?action=tutorials/web_development/developer_tools.php'>Google Chrome Developer Tools</a></li>
                             <li><a href='index.php?action=tutorials/web_development/css_2.php'>CSS Part Two (coming soon)</a></li>
                             <li><a href='index.php?action=tutorials/web_development/php_1.php'>PHP Part One (coming soon)</a></li>
                             <li><a href='index.php?action=tutorials/web_development/php_2.php'>PHP Part Two (coming soon)</a></li>
-                        </ul>
-                    </li>-->
+                        </ul>-->
+                    </li>
                 </ul>
             </li>
         </ul>

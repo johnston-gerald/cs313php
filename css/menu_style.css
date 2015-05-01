@@ -32,7 +32,7 @@ nav ul {
     list-style: none;
     position: relative;
     display: inline-table;
-    border-radius: 10px !important;
+    //border-radius: 10px !important;
 }
 	nav ul:after {
 		content: ""; clear: both; display: block;
@@ -63,23 +63,23 @@ nav ul li {
 	}
 
 nav ul ul {
-	background: #232323;
+	background: #000;
         padding: 0;
 	position: absolute; top: 100%;
         border-radius: 0px;
 }
 	nav ul ul li {
 		float: none; 
-		border-top: 1px solid #6b727c;
-		border-bottom: 1px solid #575f6a;
+		//border-top: 1px solid #6b727c;
+		//border-bottom: 1px solid #575f6a;
 		position: relative;
 	}
 		nav ul ul li a {
-			padding: 15px 40px;
+			//padding: 15px 40px;
 			color: #fff;
 		}	
 			nav ul ul li a:hover {
-				background: #5E5E5E;
+				background: #870000;
 			}
                         
 nav ul ul ul {
@@ -101,8 +101,8 @@ and (max-device-width: 480px) and (orientation: landscape){
         margin: 0;
     }
     
-    nav ul li a {
+/*    nav ul li a {
         padding: 1em 0.7em;
-    }
+    }*/
 
 }
