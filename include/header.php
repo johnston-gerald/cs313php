@@ -19,7 +19,7 @@
             <li><a href='index.php'>home</a></li>
             <li><a href='#'>assignments</a>
                 <ul>
-                    <li><a href='index.php?action=assignments/spiritual_thought1.php'>Spiritual Thought 1</a></li>
+                    <li><a href='index.php?action=assignments/spiritual_thought1.php'>Spiritual Thought 1</a>
 <!--                        <ul>
                             <li><a href='index.php?action=tutorials/web_development/ieshiv.php'>Internet Explorer shiv</a></li>
                             <li><a href='index.php?action=tutorials/web_development/developer_tools.php'>Google Chrome Developer Tools</a></li>
