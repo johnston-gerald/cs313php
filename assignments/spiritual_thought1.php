@@ -34,3 +34,6 @@ $heading = 'Spiritual Thought';
     themes.” Moreover, feasting on the scriptures will help us get more out of any 
     class because it invites the Holy Ghost. The Holy Ghost helps us learn, retain, 
     and communicate.</p>
+
+Source: <a href="https://speeches.byu.edu/wp-content/uploads/speakers/pdf/Bednar_David_2007_02.pdf" 
+           target="_blank">A Reservoir of Living Water</a>, Elder David A. Bednar, February 2007

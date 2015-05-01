@@ -4,6 +4,8 @@ body {
     background: #000;
     /*background: #909090 url(/images/img01.jpg) repeat-x left top;*/   
     font-size:100%;
+    font-family:"Avenir Next", serif;
+    color: #187E74;
 }
 
 #wrapper, header, nav, footer {
@@ -42,11 +44,6 @@ header {
 main {
     height:100%;
     padding: 3% 3%;
-}
-
-p {
-    font-family:"Avenir Next", serif;
-    color: #187E74;
 }
 
 footer {
