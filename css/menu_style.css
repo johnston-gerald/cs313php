@@ -101,8 +101,8 @@ and (max-device-width: 480px) and (orientation: landscape){
         margin: 0;
     }
     
-/*    nav ul li a {
-        padding: 1em 0.7em;
-    }*/
+    nav ul li a {
+        padding: 0 0.7em;
+    }
 
 }
