@@ -5,15 +5,15 @@ $heading = 'Team Readiness Activity';
 
 <br>
 <form action="index.php?action=assignments/team_readiness_results.php" method="post">
-    Name: <input type="text" name="name"><br><br>
-    E-mail: <input type="text" name="email"><br><br>
-    Major:<br>
+    <span class="bold">Name: </span><input type="text" name="name"><br><br>
+    <span class="bold">E-mail: </span><input type="text" name="email"><br><br>
+    <span class="bold">Major:</span><br>
         <input type="radio" name="major" value="Computer Science">Computer Science
         <input type="radio" name="major" value="Web Design and Development">Web Design and Development
         <input type="radio" name="major" value="Computer Information Technology">Computer Information Technology
         <input type="radio" name="major" value="Computer Engineering">Computer Engineering
         <br><br>
-    Places you have visited:<br>
+    <span class="bold">Places you have visited:</span><br>
         <input type="checkbox" name="places[]" value="North America">North America
         <input type="checkbox" name="places[]" value="South America">South America
         <input type="checkbox" name="places[]" value="Europe">Europe
@@ -22,7 +22,7 @@ $heading = 'Team Readiness Activity';
         <input type="checkbox" name="places[]" value="Africa">Africa
         <input type="checkbox" name="places[]" value="Antarctica">Antarctica
         <br><br>
-    Comments:<br>
+    <span class="bold">Comments:</span><br>
     <textarea name="comment" rows="5" cols="40"></textarea><br><br>
     <input type="submit">
 </form>
