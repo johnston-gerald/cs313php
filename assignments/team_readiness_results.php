@@ -21,13 +21,9 @@ $heading = 'Team Readiness Results';
 <?php
     if (isset($_POST['places'])){
         $places = $_POST['places'];
-        if(empty($places)) {
-            echo("No places were selected.");
-        } 
-        else {
-            foreach ($places as $place) {
-                echo "$place <br>";
-            }
+        
+        foreach ($places as $place) {
+            echo "$place <br>";
         }
     }
     else {
