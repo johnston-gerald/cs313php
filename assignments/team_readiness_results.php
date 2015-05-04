@@ -11,9 +11,9 @@ $heading = 'Team Readiness Results';
 
 <span class="bold">Major:</span>
     <?php
-    if (isset($_POST['major'])){
-        echo $_POST["major"];
-    }
+        if (isset($_POST['major'])){
+            echo $_POST["major"];
+        }
     ?><br><br>
 
 <span class="bold">Places Visited: </span>
