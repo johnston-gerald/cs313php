@@ -21,6 +21,7 @@
                 <ul>
                     <li><a href='index.php?action=assignments/spiritual_thought1.php'>Spiritual Thought 1</a></li>
                     <li><a href='index.php?action=assignments/spiritual_thought2.php'>Spiritual Thought 2</a></li>
+                    <li><a href='index.php?action=assignments/team_readiness.php'>Team Readiness Activity</a></li>
                 </ul>
             </li>
         </ul>
