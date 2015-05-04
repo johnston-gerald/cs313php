@@ -4,7 +4,8 @@ $heading = 'Spiritual Thought';
 ?>
 
 <br>
-<img class="imageCenter" src="images/livingwater.jpg" width="485" height="400" alt="living water">
+<img class="imageCenter" src="images/livingwater.jpg" width="485" height="400" 
+     alt="living water" title="Christ is the Living Water">
 <br>
 
 <h2>Reading, Searching, and Studying</h2>
