@@ -1,6 +1,13 @@
 <?php
 $heading = 'PHP Survey';
     echo "<h1>$heading</h1>";
+    
+$url = 'index.php?action=assignments/php_survey_results.php';
+
+if(isset($_COOKIE["user"])) {
+    header("Location: $url");
+    exit;
+}
 ?>
 
 <br>

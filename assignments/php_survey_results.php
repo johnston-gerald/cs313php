@@ -2,6 +2,10 @@
 $heading = 'PHP Survey Results';
     echo "<h1>$heading</h1>";
 
+$cookie_name = "user";
+$cookie_value = "form_submitted";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+
 function yesNoMaybe($contents, $yes, $no, $maybe){
     $count = array("Yes"=>"0", "No"=>"0", "Maybe"=>"0");
     foreach ($contents as $line) {
