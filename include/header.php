@@ -23,6 +23,7 @@
                     <li><a href='index.php?action=assignments/spiritual_thought2.php'>Spiritual Thought 2</a></li>
                     <li><a href='index.php?action=assignments/team_readiness.php'>Team Readiness Activity</a></li>
                     <li><a href='index.php?action=assignments/php_survey.php'>PHP Survey</a></li>
+                    <li><a href='index.php?action=assignments/scriptures.php'>Scriptures</a></li>
                 </ul>
             </li>
         </ul>
