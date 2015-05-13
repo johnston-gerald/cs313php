@@ -2,8 +2,7 @@
 class Database {
     
     public $dbname;
-    private static $dsn, $username, $db;
-    private static $password = 'pa55word';
+    private static $dsn, $username, $db, $password;
     
     private function __construct() { }
 
@@ -13,6 +12,7 @@ class Database {
                 self::$dsn = "mysql:host=localhost;dbname=$dbname";
             //remote settings
             } else{
+                //get host and port settings from phpMyAdmin
                 self::$dsn = "mysql:host=127.2.123.2;port=3306;dbname=$dbname";
             }
 
@@ -32,7 +32,6 @@ class Database {
                     exit();
                 }
             }
-            //echo self::$username;   //for testing
             return self::$db;
     }
 }
