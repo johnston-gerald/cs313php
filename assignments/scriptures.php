@@ -2,9 +2,9 @@
 $heading = 'Scripture Resources';
     echo "<h1>$heading</h1>";
 
-include 'database/scripture.php';
-include 'database/database.php';
-include 'database/scripture_model.php';
+include 'database/scriptures/scripture.php';
+//include 'database/database.php';
+include 'database/scriptures/scripture_model.php';
 
 $scriptures = getScriptures();
 foreach ($scriptures as $row) {   

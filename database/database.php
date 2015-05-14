@@ -2,36 +2,38 @@
 class Database {
     
     public $dbname;
-    private static $dsn, $username, $db, $password;
+    private $dsn, $username, $db, $password, $host, $port;
     
-    private function __construct() { }
+    //function __construct() { }
 
-        public static function getDB ($dbname) {
-            //local settings
+        public function getDB ($dbname) {
             if ($_SERVER['SERVER_NAME'] == 'localhost'){
-                self::$dsn = "mysql:host=localhost;dbname=$dbname";
+                $host = 'localhost';
+                $port = '';
             //remote settings
             } else{
                 //get host and port settings from phpMyAdmin
-                self::$dsn = "mysql:host=127.2.123.2;port=3306;dbname=$dbname";
+                $host = '127.2.123.2';
+                $port = '3306';
             }
-
-            self::$username = 'gerrygj';
-            self::$password = 'pa55word';
+            $username = 'gerrygj';
+            $password = 'pa55word';
             
-            if (!isset(self::$db)) {
+            $dsn = "mysql:host=$host;port=$port;dbname=$dbname";
+            
+            if (!isset($db)) {
                 try {
-                    self::$db = new PDO(self::$dsn,
-                                        self::$username,
-                                        self::$password);
+                    $db = new PDO($dsn,
+                                  $username,
+                                  $password);
                     //make query errors throw exceptions (they don't by default)
-                    self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 } catch (PDOException $e) {
                     $error_message = $e->getMessage();
                     include('database_error.php');
                     exit();
                 }
             }
-            return self::$db;
-    }
+            return $db;
+        }
 }

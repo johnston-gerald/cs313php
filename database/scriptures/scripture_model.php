@@ -1,12 +1,12 @@
 <?php
-$db = Database::getDB('scriptures');
-$page = $action;
+$scripture_db = new Database();
+$db = $scripture_db->getDB('scriptures');
 
-function display_db_error($error_message) {
-    $error = $error_message;
-    include 'error.php';
-    exit;
-}
+//function display_db_error($error_message) {
+//    $error = $error_message;
+//    include 'database/error.php';
+//    exit;
+//}
 
 function getScriptures() {
     global $db;
@@ -28,7 +28,7 @@ function getScriptures() {
         return $scriptures;
         
     } catch (PDOException $exc) {
-        header('location: error.php');
+        header('location: database/error.php');
         exit;
     }
 }
