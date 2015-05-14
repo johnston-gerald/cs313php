@@ -13,8 +13,8 @@ class Database {
             //remote settings
             } else{
                 //get host and port settings from phpMyAdmin
-                $host = '127.2.123.2';
-                $port = '3306';
+                $host = getenv('OPENSHIFT_MYSQL_DB_HOST');
+                $port = getenv('OPENSHIFT_MYSQL_DB_PORT');
             }
             $username = 'gerrygj';
             $password = 'pa55word';
