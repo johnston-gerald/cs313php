@@ -7,17 +7,20 @@ class Database {
     //function __construct() { }
 
         public function getDB ($dbname) {
+            //local settings
             if ($_SERVER['SERVER_NAME'] == 'localhost'){
                 $host = 'localhost';
                 $port = '';
+                $username = 'gerrygj';
+                $password = 'pa55word';
+
             //remote settings
             } else{
-                //get host and port settings from phpMyAdmin
                 $host = getenv('OPENSHIFT_MYSQL_DB_HOST');
                 $port = getenv('OPENSHIFT_MYSQL_DB_PORT');
+                $username = getenv('OPENSHIFT_MYSQL_DB_USERNAME2');
+                $password = getenv('OPENSHIFT_MYSQL_DB_PASSWORD2');
             }
-            $username = 'gerrygj';
-            $password = 'pa55word';
             
             $dsn = "mysql:host=$host;port=$port;dbname=$dbname";
             
