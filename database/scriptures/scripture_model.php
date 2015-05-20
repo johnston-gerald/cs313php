@@ -2,12 +2,6 @@
 $scripture_db = new Database();
 $db = $scripture_db->getDB('scriptures');
 
-//function display_db_error($error_message) {
-//    $error = $error_message;
-//    include 'database/error.php';
-//    exit;
-//}
-
 function getScriptures() {
     global $db;
     
@@ -34,14 +28,14 @@ function getScriptures() {
 }
 
 /*
-GET SCRIPTURES
+SEARCH SCRIPTURES
 Queries the scriptures table to get a list of scriptures that
 have the passed book. Returns an array of scriptures.
 */
 function searchScriptures($book) {
   global $db;
   
-//  try {
+  try {
     // Create select statement
     $query = 'SELECT book, chapter, verse, content
               FROM scriptures
@@ -65,9 +59,9 @@ function searchScriptures($book) {
       // Return scriptures.
       return $scriptures;
     
-//  } catch (PDOException $exc) {
-//    header('location: database/error.php');
-//  }
+  } catch (PDOException $exc) {
+    header('location: database/error.php');
+  }
 }
 
 /*

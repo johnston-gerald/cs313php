@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $heading = "Book Results for $book";
 echo "<h1>$heading</h1>";
 
-//include '../database.php';
 include 'database/scriptures/scripture.php';
 include 'database/scriptures/scripture_model.php';
 
