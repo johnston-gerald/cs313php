@@ -1,14 +1,15 @@
 <?php
 class CMS {
-    private $page_id, $title, $content, $date_created, $date_last_modified, $category_id;
+    private $page_id, $title, $content, $date_created, $date_last_modified, $username, $category_name;
 
-    public function __construct($page_id, $title, $content, $date_created, $date_last_modified, $category_id) {
+    public function __construct($page_id, $title, $content, $date_created, $date_last_modified, $username, $category_name) {
         $this->page_id = $page_id;
         $this->title = $title;
         $this->content = $content;
         $this->date_created = $date_created;
         $this->date_last_modified = $date_last_modified;
-        $this->category_id = $category_id;
+        $this->username = $username;
+        $this->category_name = $category_name;
     }
     
     public function getPage_id() {
@@ -51,6 +52,48 @@ class CMS {
         $this->date_last_modified = $date_last_modified;
     }
 
+    public function getUsername() {
+        return $this->username;
+    }
+
+    public function setUsername($username) {
+        $this->username = $username;
+    }
+
+    public function getCategory_name() {
+        return $this->category_name;
+    }
+
+    public function setCategory_name($category_name) {
+        $this->page_id = $category_name;
+    }
+}
+
+class Nav {
+    private $page_id, $title, $category_id;
+
+    public function __construct($page_id, $title, $category_id) {
+        $this->page_id = $page_id;
+        $this->title = $title;
+        $this->category_id = $category_id;
+    }
+    
+    public function getPage_id() {
+        return $this->page_id;
+    }
+
+    public function setPage_id($page_id) {
+        $this->page_id = $page_id;
+    }
+    
+    public function getTitle() {
+        return $this->title;
+    }
+
+    public function setTitle($title) {
+        $this->title = $title;
+    }
+    
     public function getCategory_id() {
         return $this->category_id;
     }
@@ -58,7 +101,6 @@ class CMS {
     public function setCategory_id($category_id) {
         $this->category_id = $category_id;
     }
-    
 }
 
 class Category {

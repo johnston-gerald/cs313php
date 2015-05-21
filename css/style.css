@@ -14,6 +14,10 @@
     font-family: Avenir Next Bold;
     src: url(fonts/avenirnextbold.otf);
 }
+@font-face {
+    font-family: Avenir Next Italic;
+    src: url(fonts/avenirnextitalic.otf);
+}
 
 body {
     margin: 0;
@@ -83,8 +87,18 @@ h2 {
     color: #333333;
 }
 
+#published {
+    color: #aaa;
+    font-size:80%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .bold {
     font-family:"Avenir Next Bold", serif;
+}
+
+.italic {
+    font-family:"Avenir Next Italic", serif;
 }
 
 .center {

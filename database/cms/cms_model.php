@@ -36,7 +36,7 @@ function getCMSNav() {
     global $db;
     
     try {
-        $query = 'SELECT page_id, title, content, date_created, date_last_modified, category_id
+        $query = 'SELECT page_id, title, category_id
                   FROM page';
         $statement = $db->prepare($query);
         $statement->execute();
@@ -45,7 +45,7 @@ function getCMSNav() {
         
         $cms = array();
         foreach ($result as $row) {
-            $page = new CMS($row['page_id'], $row['title'], $row['content'], $row['date_created'], $row['date_last_modified'], $row['category_id']);
+            $page = new Nav($row['page_id'], $row['title'], $row['category_id']);
             $cms[] = $page;
         }
         return $cms;
@@ -59,9 +59,13 @@ function getCMSNav() {
 function getPage($page_id) {
     global $db, $page_id;
     
-    try {
-        $query = 'SELECT page_id, title, content, date_created, date_last_modified, category_id
-                  FROM page
+//    try {
+        $query = 'SELECT page_id, title, content, date_created, date_last_modified, username, name
+                  FROM page AS p
+                  INNER JOIN admin AS a
+                    ON p.admin_id = a.admin_id
+                  INNER JOIN category AS c
+                    ON  p.category_id = c.category_id
                   WHERE page_id = :page_id';
         $statement = $db->prepare($query);
         $statement->bindValue(':page_id', $page_id);
@@ -71,13 +75,15 @@ function getPage($page_id) {
         
         $cms = array();
         foreach ($result as $row) {
-            $page = new CMS($row['page_id'], $row['title'], $row['content'], $row['date_created'], $row['date_last_modified'], $row['category_id']);
+            $page = new CMS($row['page_id'], $row['title'], $row['content'], 
+                    $row['date_created'], $row['date_last_modified'], 
+                    $row['username'], $row['name']);
             $cms[] = $page;
         }
         return $cms;
         
-    } catch (PDOException $exc) {
-        header('location: database/error.php');
-        exit;
-    }
+//    } catch (PDOException $exc) {
+//        header('location: database/error.php');
+//        exit;
+//    }
 }

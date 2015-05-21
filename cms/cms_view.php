@@ -6,15 +6,17 @@ if (isset($_POST['page_id'])) {
 }
 
 $page = getPage($page_id);
-foreach ($page as $row) {   
+foreach ($page as $row) {
     $title = $row->getTitle();
     $content = $row->getContent();
     $date_created = $row->getDate_created();
     $date_last_modified = $row->getDate_last_modified();
-    $category_id = $row->getCategory_id();
+    $username = $row->getUsername();
+    $category_name = $row->getCategory_name();
 }
 
 $heading = $title;
     echo "<h1>$heading</h1>";
 
-echo "<br>" . nl2br($content);
+echo "<br><span id='published'>$date_created · by $username · in $category_name</span><br><br>"
+    . nl2br($content);

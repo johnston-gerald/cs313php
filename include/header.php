@@ -44,9 +44,9 @@
                     foreach ($nav as $row) { 
                         $page_id = $row->getPage_id();
                         $title = $row->getTitle();
-                        $content = $row->getContent();
-                        $date_created = $row->getDate_created();
-                        $date_last_modified = $row->getDate_last_modified();
+//                        $content = $row->getContent();
+//                        $date_created = $row->getDate_created();
+//                        $date_last_modified = $row->getDate_last_modified();
                         $category_id = $row->getCategory_id();
 
                         if ($cat_id == $category_id){
