@@ -90,7 +90,6 @@ function getPage($page_id) {
 
 function getStyle() {
     global $db;
-    static $active_style;
     
     try {
         $query = 'SELECT active_style 
@@ -113,4 +112,41 @@ function getStyle() {
         header('location: database/error.php');
         exit;
     }
+}
+
+function getStyles() {
+    global $db;
+    
+    try {
+        $query = 'SELECT style_id, style_name 
+                  FROM style';
+        $statement = $db->prepare($query);
+        //$statement->bindValue(':page_id', $page_id);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        
+        $styles = array();
+        foreach ($result as $row) {
+            $styles = new Style($row['style_id'], $row['style_name']);
+            $cms[] = $styles;
+        }
+        
+        return $cms;
+        
+    } catch (PDOException $exc) {
+        header('location: database/error.php');
+        exit;
+    }
+}
+
+function setStyle($active_style) {
+    global $db;
+    $query = 'UPDATE selected_style
+              SET active_style = :active_style
+              WHERE selected_style_id = "1"';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':active_style', $active_style);
+    $statement->execute();
+    $statement->closeCursor();
 }
