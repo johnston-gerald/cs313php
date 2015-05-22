@@ -59,7 +59,7 @@ function getCMSNav() {
 function getPage($page_id) {
     global $db, $page_id;
     
-//    try {
+    try {
         $query = 'SELECT page_id, title, content, date_created, date_last_modified, username, name
                   FROM page AS p
                   INNER JOIN admin AS a
@@ -82,8 +82,35 @@ function getPage($page_id) {
         }
         return $cms;
         
-//    } catch (PDOException $exc) {
-//        header('location: database/error.php');
-//        exit;
-//    }
+    } catch (PDOException $exc) {
+        header('location: database/error.php');
+        exit;
+    }
+}
+
+function getStyle() {
+    global $db;
+    static $active_style;
+    
+    try {
+        $query = 'SELECT active_style 
+                  FROM selected_style
+                  WHERE selected_style_id = "1"';
+        $statement = $db->prepare($query);
+        //$statement->bindValue(':page_id', $page_id);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        
+        //$style = array();
+        foreach ($result as $row) {
+            $active_style = $row['active_style'];
+        }
+        
+        return $active_style;
+        
+    } catch (PDOException $exc) {
+        header('location: database/error.php');
+        exit;
+    }
 }

@@ -5,7 +5,7 @@
     <title>%TITLE%</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="screen">
     <link href="css/menu_style.css" rel="stylesheet" type="text/css" media="screen">
-    <link href='css/style.php' rel='stylesheet' type='text/css' media="screen">
+    <!--<link href='css/style.php' rel='stylesheet' type='text/css' media="screen">-->
 <!--    <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/jquery.validate.min.js"></script>-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -14,6 +14,7 @@
         include 'database/cms/cms.php';
         include 'database/database.php';
         include 'database/cms/cms_model.php';
+        include 'css/style.php'
     ?>
 </head>
 

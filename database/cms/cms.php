@@ -127,3 +127,28 @@ class Category {
         $this->name = $category_id;
     }
 }
+
+class Style {
+    private $style_id, $style_name;
+
+    public function __construct($style_id, $style_name) {
+        $this->style_id = $style_id;
+        $this->style_name = $style_name;
+    }
+    
+    public function getStyle_id() {
+        return $this->style_id;
+    }
+
+    public function setStyle_id($style_id) {
+        $this->name = $style_id;
+    }
+    
+    public function getStyle_name() {
+        return $this->style_name;
+    }
+
+    public function setStyle_name($style_name) {
+        $this->name = $style_name;
+    }
+}
