@@ -6,7 +6,7 @@ function getScriptures() {
     global $db;
     
     try {
-        $query = 'SELECT book, chapter, verse, content 
+        $query = 'SELECT id, book, chapter, verse, content 
                   FROM scriptures 
                   ORDER BY book, chapter, verse DESC';
         $statement = $db->prepare($query);
@@ -16,7 +16,7 @@ function getScriptures() {
         
         $scriptures = array();
         foreach ($result as $row) {
-            $scripture = new Scripture($row['book'], $row['chapter'], $row['verse'], $row['content']);
+            $scripture = new Scripture($row['id'], $row['book'], $row['chapter'], $row['verse'], $row['content']);
             $scriptures[] = $scripture;
         }
         return $scriptures;
@@ -37,7 +37,7 @@ function searchScriptures($book) {
   
   try {
     // Create select statement
-    $query = 'SELECT book, chapter, verse, content
+    $query = 'SELECT id, book, chapter, verse, content
               FROM scriptures
               WHERE book = :book
               ORDER BY book, chapter, verse DESC';
@@ -52,7 +52,7 @@ function searchScriptures($book) {
     // Read results into a Scripture array
       $scriptures = array();
       foreach ($result as $row) {
-          $scripture = new Scripture($row['book'], $row['chapter'], $row['verse'], $row['content']);
+          $scripture = new Scripture($row['id'], $row['book'], $row['chapter'], $row['verse'], $row['content']);
           $scriptures[] = $scripture;
       }
       
@@ -98,4 +98,32 @@ function getBooks() {
     header('location: database/error.php');
     exit;
   }
+}
+
+function getTopics() {
+    global $db;
+
+    try {
+        $query = 'SELECT scripture_id, name
+                  FROM topics t
+                  JOIN topic_scripture_link tsl
+                    ON t.id = tsl.topic_id';
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+
+        $topics = array();
+        foreach($result as $row) {
+            $topic = new Topic($row['scripture_id'], $row['name']);
+            $topics[] = $topic;
+        }
+
+        // Return our array of books
+        return $topics;
+
+    } catch (PDOException $exc) {
+        header('location: database/error.php');
+        exit;
+    }
 }

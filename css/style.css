@@ -110,15 +110,10 @@ h2 {
     margin: 0 auto;
 }
 
-.disableUser {
-    float:right;
+.scriptureTopic{
+    color: #4D4D4D;
+    font-size: 90%;
 }
-
-.badComment {
-    clear:left;
-}
-
-.deleteComment {}
 
 img {
     max-width: 100%;

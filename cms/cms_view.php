@@ -19,4 +19,4 @@ $heading = $title;
     echo "<h1>$heading</h1>";
 
 echo "<br><span id='published'>$date_created · by $username · in $category_name</span><br><br>"
-    . nl2br($content);
+    . $content;

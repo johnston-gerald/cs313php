@@ -7,11 +7,24 @@ include 'database/scriptures/scripture_model.php';
 include 'database/scriptures/scripture_search.php';
 
 $scriptures = getScriptures();
-foreach ($scriptures as $row) {   
-    $book = $row->getBook();
-    $chapter = $row->getChapter();
-    $verse = $row->getVerse();
-    $content = $row->getContent();
+$topics = getTopics();
+
+foreach ($scriptures as $scripture) {   
+    $id = $scripture->getId();
+    $book = $scripture->getBook();
+    $chapter = $scripture->getChapter();
+    $verse = $scripture->getVerse();
+    $content = $scripture->getContent();
+
+    $output = array();
+    foreach ($topics as $topic) {
+        $scripture_id = $topic->getScripture_id();
+        if($scripture_id == $id){
+            $output[] = $topic->getName();
+        }
+    }
+    $topics_string = implode(', ', $output);
     
-    echo "<br><span class='bold'>$book $chapter:$verse</span> - \"$content\"<br>";
+    echo "<br><span class='bold'>$book $chapter:$verse</span> - \"$content\"<br>"
+       . "<span class='scriptureTopic'>Topics: $topics_string</span><br>";
 }

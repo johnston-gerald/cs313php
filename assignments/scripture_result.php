@@ -16,15 +16,27 @@ include 'database/scriptures/scripture_model.php';
 
 // Call function to get scriptures
 $scriptures = searchScriptures($book);
+$topics = getTopics();
 
 // Display each of the scriptures found.
-foreach ($scriptures as $row) {   
-    $book = $row->getBook();
-    $chapter = $row->getChapter();
-    $verse = $row->getVerse();
-    $content = $row->getContent();
+foreach ($scriptures as $scripture) {   
+    $id = $scripture->getId();
+    $book = $scripture->getBook();
+    $chapter = $scripture->getChapter();
+    $verse = $scripture->getVerse();
+    $content = $scripture->getContent();
     
-    echo "<br><span class='bold'>$book $chapter:$verse</span> - \"$content\"<br>";
+    $output = array();
+    foreach ($topics as $topic) {
+        $scripture_id = $topic->getScripture_id();
+        if($scripture_id == $id){
+            $output[] = $topic->getName();
+        }
+    }
+    $topics_string = implode(', ', $output);
+    
+    echo "<br><span class='bold'>$book $chapter:$verse</span> - \"$content\"<br>"
+       . "<span class='scriptureTopic'>Topics: $topics_string</span><br>";
 }
 ?>
 

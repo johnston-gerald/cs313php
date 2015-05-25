@@ -2,11 +2,11 @@
 $cms_db = new Database();
 $db = $cms_db->getDB('cms');
 
-function display_db_error($error_message) {
-    $error = $error_message;
-    include 'database/error.php';
-    exit;
-}
+//function display_db_error($error_message) {
+//    $error = $error_message;
+//    include '../database/error.php';
+//    exit;
+//}
 
 function getCategory() {
     global $db;
@@ -149,4 +149,45 @@ function setStyle($active_style) {
     $statement->bindValue(':active_style', $active_style);
     $statement->execute();
     $statement->closeCursor();
+}
+
+function savePage($title, $content, $admin_id, $category_id) {
+    global $db;
+
+    $query = 'INSERT INTO page
+                 (title, content, date_created, date_last_modified, admin_id, category_id)
+              VALUES
+                 (:title, :content, NOW(), NOW(), :admin_id, :category_id)';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':title', $title);
+        $statement->bindValue(':content', $content);
+        $statement->bindValue(':admin_id', $admin_id);
+        $statement->bindValue(':category_id', $category_id);
+        $row_count = $statement->execute();
+        $statement->closeCursor();
+        return $row_count;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
+
+function saveCategory($category_name) {
+    global $db;
+
+    $query = 'INSERT INTO category
+                 (name)
+              VALUES
+                 (:category_name)';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':category_name', $category_name);
+        $row_count = $statement->execute();
+        $statement->closeCursor();
+        return $row_count;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
 }
