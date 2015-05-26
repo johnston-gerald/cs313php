@@ -4,27 +4,81 @@ $heading = 'Scripture Resources';
 
 include 'database/scriptures/scripture.php';
 include 'database/scriptures/scripture_model.php';
-include 'database/scriptures/scripture_search.php';
+?>
 
-$scriptures = getScriptures();
-$topics = getTopics();
+<!--Scripture Entry-->
+<br><hr>
+<h2>New Scripture Entry</h2>
+<form id="new_scripture" method="post">
+    Book: <input type="text" name="book " />&nbsp;&nbsp;&nbsp;&nbsp;
+    Chapter or Section: <select name="chapter">
+        <?php 
+            for ($i = 1; $i <= 150; $i++) {     //the longest book in the scriptures has 150 chapters
+                echo "<option value='$i'>$i</option>";
+            }
+        ?>
+    </select>&nbsp;&nbsp;&nbsp;&nbsp;
+    Verse: <select name="verse">
+        <?php 
+            for ($i = 1; $i <= 176; $i++) {     //the longest chapter in the scriptures has 176 chapters
+                echo "<option value='$i'>$i</option>";
+            }
+        ?>
+    </select><br><br>
+    <textarea name="content" id="content" placeholder="Enter the scripture content here."></textarea><br>
+    Topics:&nbsp;&nbsp;&nbsp;&nbsp;
+        <?php
+            $topic_list = getAllTopics();
+            foreach ($topic_list as $topic) {
+                $id = $topic->getId();
+                $name = $topic->getName();
+                
+                echo "<input type='checkbox' name='$name' value='$id'>$name&nbsp;&nbsp;&nbsp;&nbsp;";
+            }
+        ?>
+    <br><br>
+    <input type="submit" value="Save">
+</form>
+<br><hr>
+<!--end of Scripture Entry-->
 
-foreach ($scriptures as $scripture) {   
-    $id = $scripture->getId();
-    $book = $scripture->getBook();
-    $chapter = $scripture->getChapter();
-    $verse = $scripture->getVerse();
-    $content = $scripture->getContent();
+<!--scripture search-->
+<?php
+    $books = getBooks();
+?>
 
-    $output = array();
-    foreach ($topics as $topic) {
-        $scripture_id = $topic->getScripture_id();
-        if($scripture_id == $id){
-            $output[] = $topic->getName();
-        }
+<script>
+function searchScriptures(book) {
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
     }
-    $topics_string = implode(', ', $output);
-    
-    echo "<br><span class='bold'>$book $chapter:$verse</span> - \"$content\"<br>"
-       . "<span class='scriptureTopic'>Topics: $topics_string</span><br>";
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            document.getElementById("scriptures").innerHTML=xmlhttp.responseText;
+      }
+    }
+    xmlhttp.open("GET","database/scriptures/scripture_result.php?book="+book,true);
+    xmlhttp.send();
 }
+</script>
+
+<form><br>
+    <select name="book" onchange="searchScriptures(this.value)">
+        <option value='%'>Select a book</option>
+        <?php
+            // Insert each book into our select box
+            foreach ($books as $book) {
+                echo "<option value='$book'>$book</option>";
+            }
+        ?>
+    </select>
+    <!--<input type="submit" value="Search"/>-->
+</form>
+<!--end of scripture search-->
+
+<div id="scriptures">
+    <?php include 'database/scriptures/scripture_result.php'; ?>
+</div>

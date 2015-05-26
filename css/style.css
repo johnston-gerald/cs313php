@@ -114,6 +114,19 @@ h2 {
     color: #4D4D4D;
     font-size: 90%;
 }
+#content {
+    display: block;
+    /*background: white;*/
+    
+    padding: 1em;
+    /*margin: auto;*/
+    /*font-size: 1em;*/
+    
+    height: 10em;
+    max-height: 10em;
+    width: 97%;
+    /*max-width: 100%;*/
+}
 
 img {
     max-width: 100%;

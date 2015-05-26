@@ -1,18 +1,22 @@
 <?php
+$book = "%";
 // Create var to hold book name
-$book = "";
+if (isset($_GET['book'])) {
+    $book = $_GET['book'];
+    include '../database.php';
+    include 'scripture.php';
+    include 'scripture_model.php';
+} 
+//$book = "";
 // Check to make sure the request method was a post
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Strip input
-  $book = htmlspecialchars($_POST["book"]);
-}
+//if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//  // Strip input
+//  $book = htmlspecialchars($_POST["book"]);
+//}
 
 // Display header
-$heading = "Book Results for $book";
-echo "<h1>$heading</h1>";
-
-include 'database/scriptures/scripture.php';
-include 'database/scriptures/scripture_model.php';
+//$heading = "Book Results for $book";
+//echo "<h1>$heading</h1>";
 
 // Call function to get scriptures
 $scriptures = searchScriptures($book);
@@ -38,7 +42,3 @@ foreach ($scriptures as $scripture) {
     echo "<br><span class='bold'>$book $chapter:$verse</span> - \"$content\"<br>"
        . "<span class='scriptureTopic'>Topics: $topics_string</span><br>";
 }
-?>
-
-<br>
-<a href='index.php?action=assignments/scriptures.php'>Back to Scripture Resources</a>

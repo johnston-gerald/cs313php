@@ -2,18 +2,24 @@
     $books = getBooks();
 ?>
 
-<!-- 
-Outside of php code, because I dont like using echos 
-when I don't have to.
--->
-<form action="index.php?action=assignments/scripture_result.php" method= "post" id="bookForm"><br>
-Book:<br>
-<select name="book">
-<?php
-  // Insert each book into our select box
-  foreach ($books as $book) {
-    echo "<option value=\"$book\">$book</option>";
-  }
-?>
-<input type="submit" value="Search"/>
+<script>
+function searchScriptures(book) {
+//    xmlhttp.open("GET","getuser.php?q="+str,true);
+    xmlhttp.open("GET","database/scriptures/scripture_result?book='"+str+"'.php");
+    xmlhttp.send();
+//    $("#scriptures").load("/database/scriptures/scripture_result?book='"+str+"'.php");
+}
+</script>
+
+<form><br>
+    <select name="book" onchange="searchScriptures(this.value)">
+        <option value='%'>Select a book</option>
+        <?php
+            // Insert each book into our select box
+            foreach ($books as $book) {
+                echo "<option value='$book'>$book</option>";
+            }
+        ?>
+    </select>
+    <!--<input type="submit" value="Search"/>-->
 </form>

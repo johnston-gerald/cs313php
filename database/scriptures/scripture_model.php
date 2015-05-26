@@ -39,7 +39,7 @@ function searchScriptures($book) {
     // Create select statement
     $query = 'SELECT id, book, chapter, verse, content
               FROM scriptures
-              WHERE book = :book
+              WHERE book LIKE :book
               ORDER BY book, chapter, verse DESC';
 
     // Get results
@@ -100,6 +100,35 @@ function getBooks() {
   }
 }
 
+//returns all topics
+function getAllTopics() {
+    global $db;
+
+    try {
+        $query = 'SELECT id, name
+                  FROM topics
+                  ORDER BY name';
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+
+        $topics = array();
+        foreach($result as $row) {
+            $topic = new Topics($row['id'], $row['name']);
+            $topics[] = $topic;
+        }
+
+        // Return our array of books
+        return $topics;
+
+    } catch (PDOException $exc) {
+        header('location: database/error.php');
+        exit;
+    }
+}
+
+//returns topics linked to scriptures
 function getTopics() {
     global $db;
 
