@@ -10,7 +10,7 @@ include 'database/scriptures/scripture_model.php';
 <br><hr>
 <h2>New Scripture Entry</h2>
 <form id="new_scripture" method="post">
-    Book: <input type="text" name="book " />&nbsp;&nbsp;&nbsp;&nbsp;
+    Book: <input type="text" name="book" />&nbsp;&nbsp;&nbsp;&nbsp;
     Chapter or Section: <select name="chapter">
         <?php 
             for ($i = 1; $i <= 150; $i++) {     //the longest book in the scriptures has 150 chapters
@@ -36,6 +36,9 @@ include 'database/scriptures/scripture_model.php';
                 echo "<input type='checkbox' name='$name' value='$id'>$name&nbsp;&nbsp;&nbsp;&nbsp;";
             }
         ?>
+        <!--option to create a new topic-->
+        <input type='checkbox' name='new_topic' value='new_topic'>
+            <input type="text" name="new_topic_name" placeholder="New Topic"/>
     <br><br>
     <input type="submit" value="Save">
 </form>
