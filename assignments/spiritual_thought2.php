@@ -1,11 +1,11 @@
 <?php
-$heading = 'Spiritual Thought';
+$heading = 'Spiritual Thought 2';
     echo "<h1>$heading</h1>";
 ?>
 
 <br>
-<img class="imageCenter" src="images/firstvision.jpg" width="543" height="400" 
-     alt="Joseph Smith, First Vision" title="The First Vision">
+<img src="images/firstvision.jpg" width="543" height="400" alt="Joseph Smith, First Vision" 
+     title="The First Vision">
 <br>
 
 <h2>Miracles follow those with sufficient faith</h2>

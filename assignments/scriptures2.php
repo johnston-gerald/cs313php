@@ -24,66 +24,48 @@ function searchScriptures(book) {
 }
 
 // Call the insert scripture code, update the scriptures div
-function insertScripture() {
-  // 1. Create XHR instance - Start
-    var xhr;
-    if (window.XMLHttpRequest) {
-        xhr = new XMLHttpRequest();
+function insertScripture(new_book, new_chapter, new_verse, new_content) {
+//   Keep page from refreshing.
+  document.getElementById("new_scripture");
+  sendStr = $("new_scripture").serialize();
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else { // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      document.getElementById("scriptures").innerHTML=xmlhttp.responseText;
     }
-    else if (window.ActiveXObject) {
-        xhr = new ActiveXObject("Msxml2.XMLHTTP");
-    }
-    else {
-        throw new Error("Ajax is not supported by this browser");
-    }
-    // 1. Create XHR instance - End
-    
-    // 2. Define what to do when XHR feed you the response from the server - Start
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status == 200 && xhr.status < 300) {
-                document.getElementById('scriptures').innerHTML = xhr.responseText;
-            }
-        }
-    }
-    // 2. Define what to do when XHR feed you the response from the server - Start
-    sendStr = $(document.getElementById('new_scripture')).serialize();
-    
-//    var book = document.getElementById("book").value;
-//    var chapter = document.getElementById("chapter").value;
-//    var verse = document.getElementById("verse").value;
-//    var content = document.getElementById("content").value;
-
-    // 3. Specify your action, location and Send to the server - Start 
-    xhr.open('POST', 'database/scriptures/insert_scripture.php');
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-//    xhr.send("book=" +book +"&chapter=" +chapter +"&verse=" +verse +"&content=" +content);
-    xhr.send(sendStr);
-    // 3. Specify your action, location and Send to the server - End
-  alert(sendStr);
+  }
+  xmlhttp.open("GET", "database/scriptures/insert_scripture.php?new_book="
+          +new_book +"&new_chapter=" +new_chapter +"&new_verse=" +new_verse +"&new_content=" +new_content, true);
+    xmlhttp.send(sendStr);
+    alert(new_chapter);
 }
 </script>
 
 <!--Scripture Entry-->
 <br><hr>
 <h2>New Scripture Entry</h2>
-<form id="new_scripture" method="post">
-    Book: <input type="text" id="book" name="book" />&nbsp;&nbsp;&nbsp;&nbsp;
-    Chapter or Section: <select id="chapter" name="chapter">
+<form id="new_scripture" method="GET" onsubmit="insertScripture(this.new_book, this.new_chapter, this.new_verse, this.new_content)">
+    Book: <input type="text" id="new_book" name="new_book" />&nbsp;&nbsp;&nbsp;&nbsp;
+    Chapter or Section: <select id="new_chapter" name="new_chapter">
         <?php 
             for ($i = 1; $i <= 150; $i++) {     //the longest book in the scriptures has 150 chapters
                 echo "<option value='$i'>$i</option>";
             }
         ?>
     </select>&nbsp;&nbsp;&nbsp;&nbsp;
-    Verse: <select id="verse" name="verse">
+    Verse: <select id="new_verse" name="new_verse">
         <?php 
             for ($i = 1; $i <= 176; $i++) {     //the longest chapter in the scriptures has 176 chapters
                 echo "<option value='$i'>$i</option>";
             }
         ?>
     </select><br><br>
-    <textarea id="content" name="content" placeholder="Enter the scripture content here."></textarea><br>
+    <textarea id="new_content" name="new_content" placeholder="Enter the scripture content here."></textarea><br>
     Topics:&nbsp;&nbsp;&nbsp;&nbsp;
         <?php
             $topic_list = getAllTopics();
@@ -91,14 +73,14 @@ function insertScripture() {
                 $id = $topic->getId();
                 $name = $topic->getName();
                 
-                echo "<input type='checkbox' name='$name' value='$id'>$name&nbsp;&nbsp;&nbsp;&nbsp;";
+                echo "<input type='checkbox' id='$name' name='$name' value='$id'>$name&nbsp;&nbsp;&nbsp;&nbsp;";
             }
         ?>
         <!--option to create a new topic-->
-        <input type='checkbox' name='new_topic' value='new_topic'>
-            <input type="text" name="new_topic_name" placeholder="New Topic"/>
+        <input type='checkbox' id='new_topic' name='new_topic' value='new_topic'>
+            <input type="text" id="new_topic_name" name="new_topic_name" placeholder="New Topic"/>
     <br><br>
-    <input type="submit" value="Save" onclick="insertScripture()">
+    <input type="submit" value="Save">
 </form>
 <br><hr>
 <!--end of Scripture Entry-->

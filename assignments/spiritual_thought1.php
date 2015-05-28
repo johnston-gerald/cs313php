@@ -1,11 +1,11 @@
 <?php
-$heading = 'Spiritual Thought';
+$heading = 'Spiritual Thought 1';
     echo "<h1>$heading</h1>";
 ?>
 
 <br>
-<img class="imageCenter" src="images/livingwater.jpg" width="485" height="400" 
-     alt="living water" title="Christ is the Living Water">
+<img src="images/livingwater.jpg" width="485" height="400" alt="living water" 
+     title="Christ is the Living Water">
 <br>
 
 <h2>Reading, Searching, and Studying</h2>
@@ -36,5 +36,5 @@ $heading = 'Spiritual Thought';
     class because it invites the Holy Ghost. The Holy Ghost helps us learn, retain, 
     and communicate.</p>
 
-Source: <a href="https://speeches.byu.edu/wp-content/uploads/speakers/pdf/Bednar_David_2007_02.pdf" 
+Source: <a href="https://speeches.byu.edu/talks/david-a-bednar_reservoir-living-water/" 
            target="_blank">A Reservoir of Living Water</a>, Elder David A. Bednar, February 2007

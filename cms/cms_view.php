@@ -15,8 +15,22 @@ foreach ($page as $row) {
     $category_name = $row->getCategory_name();
 }
 
-$heading = $title;
+if(isset($content)){
+    
+    $heading = $title;
     echo "<h1>$heading</h1>";
+    
+    if ($date_last_modified > $date_created){
+        $modified = "· Edited $date_last_modified";
+    } else {
+        $modified = "";
+    }
 
-echo "<br><span id='published'>$date_created · by $username · in $category_name</span><br><br>"
-    . $content;
+    echo "<br><span id='published'>$date_created · by $username · in $category_name $modified</span><br><br>"
+        . $content;
+} else {
+    $heading = "Error";
+    echo "<h1>$heading</h1>";
+    
+    echo "<p>The page does not exist.</p>";
+}

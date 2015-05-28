@@ -8,12 +8,74 @@ $db = $cms_db->getDB('cms');
 //    exit;
 //}
 
+function addUser($username, $email, $password) {
+    global $db;
+    $pword = password_hash($password, PASSWORD_DEFAULT);
+    
+    $query = 'INSERT INTO admin (username, email, password)
+              VALUES (:username, :email, :password)';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':username', $username);
+    $statement->bindValue(':email', $email);
+    $statement->bindValue(':password', $pword);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function isValidUserLogin($username, $password) {
+    global $db;
+    $query = 'SELECT admin_id, password
+              FROM admin
+              WHERE username = :username';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':username', $username);
+//    $statement->bindValue(':password', $password);
+    $statement->execute();
+    $valid_user = ($statement->rowCount() == 1);
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    
+    $hash = '';
+    foreach ($result as $row) {
+        $hash = $row['password'];
+    }
+    $valid_password = password_verify($password, $hash);
+    
+    return ($valid_user && $valid_password);
+}
+
+function getUserId($username) {
+    global $db;
+    
+    try {
+        $query = 'SELECT admin_id
+                  FROM admin
+                  WHERE username = :username';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':username', $username);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        
+        //$style = array();
+        foreach ($result as $row) {
+            $admin_id = $row['admin_id'];
+        }
+        
+        return $admin_id;
+        
+    } catch (PDOException $exc) {
+        header('location: database/error.php');
+        exit;
+    }
+}
+
 function getCategory() {
     global $db;
     
     try {
         $query = 'SELECT category_id, name
-                  FROM category;';
+                  FROM category';
         $statement = $db->prepare($query);
         $statement->execute();
         $result = $statement->fetchAll();
@@ -57,7 +119,7 @@ function getCMSNav() {
 }
 
 function getPage($page_id) {
-    global $db, $page_id;
+    global $db;
     
     try {
         $query = 'SELECT page_id, title, content, date_created, date_last_modified, username, name
@@ -158,8 +220,49 @@ function savePage($title, $content, $admin_id, $category_id) {
                  (title, content, date_created, date_last_modified, admin_id, category_id)
               VALUES
                  (:title, :content, NOW(), NOW(), :admin_id, :category_id)';
+//    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':title', $title);
+        $statement->bindValue(':content', $content);
+        $statement->bindValue(':admin_id', $admin_id);
+        $statement->bindValue(':category_id', $category_id);
+        $row_count = $statement->execute();
+        $statement->closeCursor();
+        return $row_count;
+//    } catch (PDOException $e) {
+//        $error_message = $e->getMessage();
+//        display_db_error($error_message);
+//    }
+}
+
+function saveCategory($category_name) {
+    global $db;
+
+    $query = 'INSERT INTO category
+                 (name)
+              VALUES
+                 (:category_name)';
     try {
         $statement = $db->prepare($query);
+        $statement->bindValue(':category_name', $category_name);
+        $row_count = $statement->execute();
+        $statement->closeCursor();
+        return $row_count;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
+
+function editPage($page_id, $title, $content, $admin_id, $category_id) {
+    global $db;
+
+    $query = 'UPDATE page
+                 SET title = :title, content = :content, date_last_modified = NOW(), admin_id = :admin_id, category_id = :category_id
+              WHERE page_id = :page_id';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':page_id', $page_id);
         $statement->bindValue(':title', $title);
         $statement->bindValue(':content', $content);
         $statement->bindValue(':admin_id', $admin_id);
@@ -173,16 +276,32 @@ function savePage($title, $content, $admin_id, $category_id) {
     }
 }
 
-function saveCategory($category_name) {
+function deletePage($page_id) {
     global $db;
 
-    $query = 'INSERT INTO category
-                 (name)
-              VALUES
-                 (:category_name)';
+    $query = 'DELETE FROM page
+              WHERE page_id = :page_id';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':category_name', $category_name);
+        $statement->bindValue(':page_id', $page_id);
+        $row_count = $statement->execute();
+        $statement->closeCursor();
+        return $row_count;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
+
+//deletes any empty categories
+function deleteCategory() {
+    global $db;
+
+    $query = 'DELETE c FROM category c
+              LEFT JOIN page p ON p.category_id = c.category_id
+              WHERE p.category_id IS NULL';
+    try {
+        $statement = $db->prepare($query);
         $row_count = $statement->execute();
         $statement->closeCursor();
         return $row_count;
