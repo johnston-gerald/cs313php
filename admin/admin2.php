@@ -2,7 +2,7 @@
 $heading = 'Admin';
     echo "<h1>$heading</h1>";
 
-//echo error_reporting(22527);
+echo error_reporting(22527) . "<br>?";
 //echo (error_get_last());
     
 $error_number = 22527;
