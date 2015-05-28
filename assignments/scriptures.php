@@ -60,7 +60,7 @@ function insertScripture() {
 //    xhr.send("book=" +book +"&chapter=" +chapter +"&verse=" +verse +"&content=" +content);
     xhr.send(sendStr);
     // 3. Specify your action, location and Send to the server - End
-  alert(sendStr);
+//  alert(sendStr);
 }
 </script>
 
