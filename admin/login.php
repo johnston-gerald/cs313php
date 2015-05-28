@@ -1,5 +1,5 @@
 <?php
-    require_once('authentication/util/secure_conn.php');  // require a secure connection
+    //require_once('authentication/util/secure_conn.php');  // require a secure connection
     
     $username='';
     $password='';
