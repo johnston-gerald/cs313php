@@ -12,6 +12,7 @@ if(isset($_POST['logout'])){
 include 'login.php';
 
 if (!isset($_SESSION['is_valid_user'])) {
+    echo "jljlsdfjlsdf";
     include 'login_form.php';
 } else  {
 
