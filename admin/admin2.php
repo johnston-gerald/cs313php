@@ -2,7 +2,8 @@
 $heading = 'Admin';
     echo "<h1>$heading</h1>";
 
-echo error_reporting(22527);
+//echo error_reporting(22527);
+echo (error_get_last());
     
 if(isset($_POST['logout'])){
     $_SESSION = array();   // Clear all session data from memory
