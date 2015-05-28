@@ -1,8 +1,9 @@
 <?php
-
 $heading = 'Admin';
     echo "<h1>$heading</h1>";
 
+error_reporting(22527);
+    
 if(isset($_POST['logout'])){
     $_SESSION = array();   // Clear all session data from memory
     session_destroy();     // Clean up the session ID
