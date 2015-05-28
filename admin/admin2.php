@@ -2,41 +2,11 @@
 $heading = 'Admin';
     echo "<h1>$heading</h1>";
 
-echo error_reporting(22527) . "<br>?";
+//echo error_reporting(22527) . "<br>?";
 //echo (error_get_last());
     
-$error_number = 22527;
-    $error_description = array( );
-    $error_codes = array(
-        E_ERROR              => "E_ERROR",
-        E_WARNING            => "E_WARNING",
-        E_PARSE              => "E_PARSE",
-        E_NOTICE             => "E_NOTICE",
-        E_CORE_ERROR         => "E_CORE_ERROR",
-        E_CORE_WARNING       => "E_CORE_WARNING",
-        E_COMPILE_ERROR      => "E_COMPILE_ERROR",
-        E_COMPILE_WARNING    => "E_COMPILE_WARNING",
-        E_USER_ERROR         => "E_USER_ERROR",
-        E_USER_WARNING       => "E_USER_WARNING",
-        E_USER_NOTICE        => "E_USER_NOTICE",
-        E_STRICT             => "E_STRICT",
-        E_RECOVERABLE_ERROR  => "E_RECOVERABLE_ERROR",
-        E_DEPRECATED         => "E_DEPRECATED",
-        E_USER_DEPRECATED    => "E_USER_DEPRECATED",
-        E_ALL                => "E_ALL"
-    );
-    foreach( $error_codes as $number => $description )
-    {
-        if ( ( $number & $error_number ) == $number )
-        {
-            $error_description[ ] = $description;
-        }
-    }
-    echo sprintf(
-        "error number %d corresponds to:\n%s",
-        $error_number,
-        implode( " | ", $error_description )
-    );
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
     
 if(isset($_POST['logout'])){
     $_SESSION = array();   // Clear all session data from memory
