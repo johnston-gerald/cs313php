@@ -1,5 +1,9 @@
 <?php
-require 'password.php';
+
+//this is a workaround for PHP 5.3-5.4 (not necessary for PHP 5.5+)
+if (version_compare(PHP_VERSION, '5.5.0') < 0) {
+    require 'password.php';
+}
 
 $cms_db = new Database();
 $db = $cms_db->getDB('cms');
