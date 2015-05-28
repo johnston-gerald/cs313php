@@ -1,4 +1,6 @@
 <?php
+require 'password.php';
+
 $cms_db = new Database();
 $db = $cms_db->getDB('cms');
 

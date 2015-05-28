@@ -5,9 +5,19 @@ $heading = 'Admin';
 //echo error_reporting(22527) . "<br>?";
 //echo (error_get_last());
     
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1);
+
+//echo 'Current PHP version: ' . phpversion();
     
+//echo phpversion();
+    
+if (version_compare(PHP_VERSION, '5.5.0') >= 0) {
+    echo 'I am at least PHP version 5.5.0, my version: ' . PHP_VERSION . "\n";
+}else {
+    echo 'I am less than version 5.5.0';
+}
+
 if(isset($_POST['logout'])){
     $_SESSION = array();   // Clear all session data from memory
     session_destroy();     // Clean up the session ID
