@@ -31,7 +31,9 @@ function CheckAuthentication()
 	// forget to add session_start() at the top of this file.
 
 	//return false;
-    return isset($_SESSION['is_valid_user']);
+ 
+//    return isset($_SESSION['is_valid_user']);     //why won't this work?
+    return true;
 }
 
 // LicenseKey : Paste your license key here. If left blank, CKFinder will be
@@ -122,7 +124,7 @@ To be able to use this feature, you must initialize the session data by
 uncommenting the following "session_start()" call.
 */
 $config['RoleSessionVar'] = 'CKFinder_UserRole';
-//session_start();
+session_start();
 
 /*
 AccessControl : used to restrict access or features to specific folders.

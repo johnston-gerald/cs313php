@@ -1,5 +1,4 @@
 <?php
-
 //this is a workaround for PHP 5.3-5.4 (not necessary for PHP 5.5+)
 if (version_compare(PHP_VERSION, '5.5.0') < 0) {
     require 'password.php';
@@ -35,7 +34,6 @@ function isValidUserLogin($username, $password) {
               WHERE username = :username';
     $statement = $db->prepare($query);
     $statement->bindValue(':username', $username);
-//    $statement->bindValue(':password', $password);
     $statement->execute();
     $valid_user = ($statement->rowCount() == 1);
     $result = $statement->fetchAll();

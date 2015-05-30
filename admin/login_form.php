@@ -13,8 +13,6 @@
 
                 <label for="login">&nbsp;</label>
                 <input id="login" name="login" value="Sign In" type="submit"/>
-<!--                &nbsp;or&nbsp;
-                <input id="register" name="register" value="Register" type="submit"/>-->
                 
                 <p><?php echo $login_message; ?></p>
             </fieldset>
