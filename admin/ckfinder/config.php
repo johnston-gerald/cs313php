@@ -63,7 +63,11 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseUrl = '/php/';
+if ($_SERVER['SERVER_NAME'] == 'localhost'){
+    $baseUrl = '/php/';
+} else {
+    $baseUrl = '/';
+}
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the
@@ -97,7 +101,7 @@ Thumbnails : thumbnails settings. All thumbnails will end up in the same
 directory, no matter the resource type.
 */
 $config['Thumbnails'] = Array(
-		'url' => $baseDir . '_thumbs',
+		'url' => $baseUrl . '_thumbs',
 		'directory' => $baseDir . '_thumbs',
 		'enabled' => true,
 		'directAccess' => false,
