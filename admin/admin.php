@@ -64,11 +64,11 @@ if (!isset($_SESSION['is_valid_user'])) {
             $p_id = $_GET['page_id'];
         }
 
+        $admin_id = $_SESSION['admin_id'];
         if(isset($p_id)){
             editPage($p_id, $page_title, $editor_data, $admin_id, $c_id);
             deleteCategory();
         } else {
-            $admin_id = $_SESSION['admin_id'];
             savePage($page_title, $editor_data, $admin_id, $c_id);
         }
         header("Location: index.php?action=admin/admin.php");  //refresh page
