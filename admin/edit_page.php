@@ -3,6 +3,8 @@
 <head>
     <title>Gerald's CMS - Content Editor</title>
     <?php
+        session_start();
+    
         include '../database/cms/cms.php';
         include '../database/database.php';
         include '../database/cms/cms_model.php';

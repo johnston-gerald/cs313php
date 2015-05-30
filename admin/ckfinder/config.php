@@ -32,8 +32,8 @@ function CheckAuthentication()
 
 	//return false;
  
-//    return isset($_SESSION['is_valid_user']);
-    return true;
+    return isset($_SESSION['is_valid_user']);
+//    return true;  //for testing purposes only
 }
 
 // LicenseKey : Paste your license key here. If left blank, CKFinder will be
