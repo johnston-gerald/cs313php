@@ -32,7 +32,7 @@ function CheckAuthentication()
 
 	//return false;
  
-//    return isset($_SESSION['is_valid_user']);     //why won't this work?
+//    return isset($_SESSION['is_valid_user']);
     return true;
 }
 
@@ -97,7 +97,7 @@ Thumbnails : thumbnails settings. All thumbnails will end up in the same
 directory, no matter the resource type.
 */
 $config['Thumbnails'] = Array(
-		'url' => $baseUrl . '_thumbs',
+		'url' => $baseDir . '_thumbs',
 		'directory' => $baseDir . '_thumbs',
 		'enabled' => true,
 		'directAccess' => false,
