@@ -1,4 +1,10 @@
 <script>
+$.validator.addMethod("pwcheck", function(value) {
+    return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
+//       && /[a-z]/.test(value) // has a lowercase letter
+       && /\d/.test(value) // has a digit
+});
+  
   // When the browser is ready...
   $(function() {
   
@@ -14,11 +20,13 @@
 //            },
             password1: {
                 required: true,
-                minlength: 7
+                minlength: 7,
+                pwcheck: "#password1"
             },
             password2: {
                 required: true,
                 minlength: 7,
+                pwcheck: "#password2",
                 equalTo: "#password1"
             },
             agree: "required"
@@ -29,11 +37,13 @@
             username: " * Please enter a username",
             password1: {
                 required: " * Please provide a password",
-                minlength: " * Your password must be at least 7 characters long"
+                minlength: " * Your password must be at least 7 characters long",
+                pwcheck: " *Your password must contain at least 1 number"
             },
             password2: {
                 required: " * Please provide a password",
                 minlength: " * Your password must be at least 7 characters long",
+                pwcheck: " *Your password must contain at least 1 number",
                 equalTo: " * Please enter the same password as above"
             },
 //            email: "Please enter a valid email address",
