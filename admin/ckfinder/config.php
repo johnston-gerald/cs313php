@@ -32,7 +32,7 @@ function CheckAuthentication()
 
 	//return false;
  
-    return isset($_SESSION['is_valid_user']);
+    return isset($_SESSION['cms']['is_valid_user']);
 //    return true;  //for testing purposes only
 }
 

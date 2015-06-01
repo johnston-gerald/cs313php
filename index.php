@@ -1,4 +1,5 @@
 <?php 
+session_id('cms');
 session_start();
 
 if (isset($_POST['action'])) {

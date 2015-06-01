@@ -6,6 +6,7 @@ $heading = 'Admin';
 //ini_set("display_errors", 1);
 
 if(isset($_POST['logout'])){
+    session_id('cms');
     $_SESSION = array();   // Clear all session data from memory
     session_destroy();     // Clean up the session ID
     $login_message = 'You have been logged out.';
@@ -13,10 +14,9 @@ if(isset($_POST['logout'])){
 
 include 'login.php';
 
-if (!isset($_SESSION['is_valid_user'])) {
+if (!isset($_SESSION['cms']['is_valid_user'])) {
     include 'login_form.php';
 } else  {
-
     include 'logout_form.php';
     
     if(isset($_POST['new_page'])){
@@ -64,7 +64,7 @@ if (!isset($_SESSION['is_valid_user'])) {
             $p_id = $_GET['page_id'];
         }
 
-        $admin_id = $_SESSION['admin_id'];
+        $admin_id = $_SESSION['cms']['admin_id'];
         if(isset($p_id)){
             editPage($p_id, $page_title, $editor_data, $admin_id, $c_id);
             deleteCategory();

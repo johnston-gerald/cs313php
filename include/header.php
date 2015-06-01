@@ -5,9 +5,8 @@
     <title>%TITLE%</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="screen">
     <link href="css/menu_style.css" rel="stylesheet" type="text/css" media="screen">
-    <!--<link href='css/style.php' rel='stylesheet' type='text/css' media="screen">-->
     <script src="js/jquery-1.11.1.min.js"></script>
-<!--    <script src="js/jquery.validate.min.js"></script>-->
+    <script src="js/jquery.validate.min.js"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta name="author" content="Gerald Johnston">
     <?php
@@ -31,6 +30,7 @@
                     <li><a href='index.php?action=assignments/team_readiness.php'>Team Readiness</a></li>
                     <li><a href='index.php?action=assignments/php_survey.php'>PHP Survey</a></li>
                     <li><a href='index.php?action=assignments/scriptures.php'>Scriptures</a></li>
+                    <li><a href='index.php?action=assignments/login/home.php'>Login</a></li>
                 </ul>
             </li>
             <?php

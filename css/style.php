@@ -75,4 +75,8 @@ nav ul ul li a:hover, nav ul li a:hover {
     color: $menu_text_hover;
     background: $menu_hover_color;
 }
+
+label.error {
+    color:#FF0000;
+}
 </style>";

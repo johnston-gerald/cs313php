@@ -1,3 +1,4 @@
+<br>
 <form method="post" id="login_form">
     <fieldset>
         <h3>Please sign in</h3>
@@ -14,7 +15,8 @@
 
             <tr>
                 <td><label for="login">&nbsp;</label></td>
-                <td><input id="login" name="login" value="Sign In" type="submit"/></td>
+                <td><input id="login" name="login" value="Sign In" type="submit"/>&nbsp;or&nbsp;
+                    <input id="signup" name="signup" value="Sign Up" type="submit"/></td>
             </tr>
         </table>
         <p><?php if(isset($login_message)){echo $login_message;} ?></p>
